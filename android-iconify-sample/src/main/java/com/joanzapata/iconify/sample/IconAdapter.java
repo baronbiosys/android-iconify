@@ -1,13 +1,12 @@
 package com.joanzapata.iconify.sample;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import com.joanzapata.iconify.Icon;
+import com.joanzapata.iconify.sample.databinding.ItemIconBinding;
 
 public class IconAdapter extends RecyclerView.Adapter<IconAdapter.ViewHolder> {
 
@@ -28,8 +27,8 @@ public class IconAdapter extends RecyclerView.Adapter<IconAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
         Icon icon = icons[position];
-        viewHolder.icon.setText("{" + icon.key() + "}");
-        viewHolder.name.setText(icon.key());
+        viewHolder.binding.icon.setText("{" + icon.key() + "}");
+        viewHolder.binding.name.setText(icon.key());
     }
 
     @Override
@@ -39,12 +38,11 @@ public class IconAdapter extends RecyclerView.Adapter<IconAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.icon) TextView icon;
-        @Bind(R.id.name) TextView name;
+        ItemIconBinding binding;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
+            binding = ItemIconBinding.bind(itemView);
         }
     }
 }

@@ -1,30 +1,26 @@
 package com.joanzapata.iconify.sample;
 
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import butterknife.Bind;
-import butterknife.ButterKnife;
+import com.google.android.material.tabs.TabLayout;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import com.joanzapata.iconify.sample.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-
-    @Bind(R.id.tabs) TabLayout tabLayout;
-    @Bind(R.id.toolbar) Toolbar toolbar;
-    @Bind(R.id.viewPager) ViewPager viewPager;
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         // Setup toolbar
-        setSupportActionBar(toolbar);
+        setSupportActionBar(binding.toolbar);
 
         // Fill view pager
-        viewPager.setAdapter(new FontIconsViewPagerAdapter(Font.values()));
-        tabLayout.setupWithViewPager(viewPager);
+        binding.viewPager.setAdapter(new FontIconsViewPagerAdapter(Font.values()));
+        binding.tabs.setupWithViewPager(binding.viewPager);
     }
 }
